@@ -1,0 +1,22 @@
+version: '3'
+services:
+    app-nginx:
+        build:
+            context: ./
+            dockerfile: ./dockerfiles/nginx-resty.dockerfile
+        restart: unless-stopped
+        volumes:
+            - ./resources/templates:/var/www/app/public
+            - ./resources/nginx/conf.d:/etc/nginx/conf.d
+        links:
+            - app-golang
+
+    app-golang:
+        restart: unless-stopped
+        build:
+            context: ./
+            dockerfile: ./dockerfiles/golang.dockerfile
+        expose:
+            - 9007
+        volumes:
+            - ./..:/go/src/app
