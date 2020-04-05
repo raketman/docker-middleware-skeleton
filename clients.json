@@ -1,0 +1,10 @@
+{
+  "clients": [
+    {
+      "code": "test",
+      "secret": "secret1",
+      "alg": "HS256",
+      "default": false
+    }
+  ]
+}
